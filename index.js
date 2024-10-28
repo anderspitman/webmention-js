@@ -142,7 +142,7 @@ function expandLink(baseUrl, link) {
   else {
     const parts = baseUrl.split('/');
     const dirParts = parts.slice(0, parts.length - 1);
-    link.href = dirParts.join('/') + link.href;
+    link.href = dirParts.join('/') + '/' + link.href;
   }
   return link;
 }
