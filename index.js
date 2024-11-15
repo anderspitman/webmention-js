@@ -56,16 +56,24 @@ function getLinks(node) {
 }
 
 async function notifyEndpoint(endpoint, source, target) {
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      source,
-      target,
-    }),
-  });
+
+  let res;
+  try {
+    res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        source,
+        target,
+      }),
+    });
+  }
+  catch(e) {
+    console.error(e);
+    return null;
+  }
 
   if (!res.ok) {
     console.log(res);
@@ -73,7 +81,15 @@ async function notifyEndpoint(endpoint, source, target) {
 }
 
 async function findEndpoint(url) {
-  const res = await fetch(url);
+  let res;
+  try {
+    res = await fetch(url);
+  }
+  catch (e) {
+    console.error(e);
+    return null;
+  }
+
   if (!res.ok) {
     return null;
   }
@@ -176,5 +192,7 @@ function parseHtmlLinks(html) {
 }
 
 export {
+  expandLink,
   notifyAll,
+  getLinksHtml,
 };
