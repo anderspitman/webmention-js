@@ -1,4 +1,5 @@
-import * as parse5 from 'https://cdn.jsdelivr.net/npm/parse5@7.2.0/+esm';
+//import * as parse5 from 'https://cdn.jsdelivr.net/npm/parse5@7.2.0/+esm';
+import * as parse5 from 'parse5';
 
 async function notifyAll(source, html) {
 
